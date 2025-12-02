@@ -1,5 +1,6 @@
 #include <WiFi.h>
 #include <time.h>
+#include "getTime.h"
 
 const char* ntpServer = "pool.ntp.org";
 const long gmtOffset_sec = 5 * 3600 + 30 * 60;   // UTC+5:30
@@ -9,10 +10,6 @@ unsigned long lastSync = 0;
 const unsigned long syncInterval = 3600 * 1000;  // 1 hour
 
 // Struct for SevSeg display
-struct ClockTime {
-  int hour;
-  int minute;
-};
 
 // Sync with NTP
 void syncNTP() {
