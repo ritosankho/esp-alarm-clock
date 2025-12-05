@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Time Setter</title>
+</head>
+<body>
+
+<h2>Set Time (Hours & Minutes)</h2>
+
+<label>Hour:</label>
+<select id="hour">
+  <!-- JS will fill this with 0–23 -->
+</select>
+
+<br><br>
+
+<label>Minute:</label>
+<select id="minute">
+  <!-- JS fills 0–59 -->
+</select>
+
+<br><br>
+
+<button onclick="sendData()">Send</button>
+
+<p id="response"></p>
+
+<script>
+// populate hour dropdown
+const hourSel = document.getElementById("hour");
+for (let i = 0; i <= 23; i++) {
+  let opt = document.createElement("option");
+  opt.value = i;
+  opt.text = i;
+  hourSel.appendChild(opt);
+}
+
+// populate minute dropdown
+const minSel = document.getElementById("minute");
+for (let i = 0; i <= 59; i++) {
+  let opt = document.createElement("option");
+  opt.value = i;
+  opt.text = i;
+  minSel.appendChild(opt);
+}
+
+function sendData() {
+  let h = document.getElementById("hour").value;
+  let m = document.getElementById("minute").value;
+
+  fetch(`/set?hour=${h}&minute=${m}`)
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("response").innerHTML = data;
+    });
+}
+</script>
+
+</body>
+</html>

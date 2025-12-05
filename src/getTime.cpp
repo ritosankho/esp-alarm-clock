@@ -38,12 +38,13 @@ ClockTime getClockTime() {                //returns current time as a struct, re
   struct tm timeinfo;
   if (!getLocalTime(&timeinfo)) {
     // return something safe if time is not available
-    return {0, 0,};
+    return {0, 0,0};
   }
 
   ClockTime ct = {
     timeinfo.tm_hour,
     timeinfo.tm_min,
+    timeinfo.tm_wday
   };
 
   return ct;
